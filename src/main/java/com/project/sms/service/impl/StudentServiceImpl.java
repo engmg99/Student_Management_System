@@ -47,4 +47,9 @@ public class StudentServiceImpl implements StudentService {
 		studentRepo.deleteById(id);
 	}
 
+	@Override
+	public List<Student> findStudentByFirstName(String name) {
+		return studentRepo.findByFirstNameContaining(name);
+	}
+
 }

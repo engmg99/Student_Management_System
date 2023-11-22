@@ -1,5 +1,7 @@
 package com.project.sms.repo;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.project.sms.entity.Student;
@@ -13,4 +15,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 	// annotation is implemented. Also by default this simple repo class provides
 	// the @transactional for all its method. so we dont need to add this
 	// @transactional annotation in the Service classes
+
+	public List<Student> findByFirstNameContaining(String firstName);
 }

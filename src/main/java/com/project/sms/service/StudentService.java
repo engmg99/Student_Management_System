@@ -5,13 +5,15 @@ import java.util.List;
 import com.project.sms.entity.Student;
 
 public interface StudentService {
-	List<Student> getAllStudents();
+	public List<Student> getAllStudents();
 
-	Student saveStudent(Student student);
+	public Student saveStudent(Student student);
 
-	Student getStudentFromId(Long id);
+	public Student getStudentFromId(Long id);
 
-	Student updateStudent(Student student);
+	public Student updateStudent(Student student);
 
-	void deleteStudent(Long id);
+	public void deleteStudent(Long id);
+	
+	public List<Student> findStudentByFirstName(String name);
 }
