@@ -1,6 +1,7 @@
 package com.project.sms.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,10 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student saveStudent(Student student) {
+		Optional<Student> studentByEmail = studentRepo.findStudentByEmail(student.getEmail());
+        if(studentByEmail.isPresent()){
+            throw new IllegalStateException("Email already present");
+        }
 		return studentRepo.save(student);
 	}
 

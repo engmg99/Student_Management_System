@@ -1,8 +1,10 @@
 package com.project.sms.repo;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.project.sms.entity.Student;
 
@@ -17,4 +19,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 	// @transactional annotation in the Service classes
 
 	public List<Student> findByFirstNameContaining(String firstName);
+
+	@Query("Select s from Student s where s.email =?1")
+	Optional<Student> findStudentByEmail(String email);
 }

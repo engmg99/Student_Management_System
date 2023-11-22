@@ -19,7 +19,10 @@
 			<div class="collapse navbar-collapse" id="navbarText">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="#">Home</a>
+						<a class="nav-link active" aria-current="page" th:href="@{/student/}">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" th:href="@{/student/new}">Add Student</a>
 					</li>
 				</ul>
 				<span class="navbar-text" sec:authorize="isAuthenticated()">
@@ -39,17 +42,14 @@
 		<div class="row">
 			<h1>List Students</h1>
 		</div>
-		<div class="row">
-			<div class="col-lg-3">
-				<a th:href="@{/student/new}" class="btn btn-primary btn-sm mb-3">Add Student</a>
-			</div>
-		</div>
 		<table class="table">
 			<thead>
 				<tr>
 					<th scope="col">First Name</th>
 					<th scope="col">Last Name</th>
 					<th scope="col">Email</th>
+					<th scope="col">D.O.B</th>
+					<th scope="col">Age</th>
 					<th scope="col">Actions</th>
 				</tr>
 			</thead>
@@ -58,6 +58,8 @@
 					<td th:text="${student.firstName}"></td>
 					<td th:text="${student.lastName}"></td>
 					<td th:text="${student.email}"></td>
+					<td th:text="${student.dob}"></td>
+					<td th:text="${student.age}"></td>
 					<td><a th:href="@{/student/edit-student/{id}(id=${student.id})}" class="btn btn-primary">Update</a>
 						<a th:href="@{/student/delete-student/{id}(id=${student.id})}" class="btn btn-danger">Delete</a>
 					</td>

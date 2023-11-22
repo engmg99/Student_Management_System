@@ -1,5 +1,7 @@
 package com.project.sms.controller;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -47,6 +49,7 @@ public class StudentController {
 
 	@PostMapping("/add-student")
 	public String addStudent(@ModelAttribute("studentToAdd") Student student) {
+		student.setDob(LocalDate.of(1999, Month.OCTOBER, 6));
 		studentService.saveStudent(student);
 		return "redirect:/student/";
 	}
