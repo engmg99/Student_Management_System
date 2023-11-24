@@ -1,74 +1,47 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-	<meta charset="ISO-8859-1">
-	<title>Login</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<div class="container-fluid">
-			<a class="navbar-brand" th:href="@{/student/}">Student Management</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-				aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarText">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" th:href="@{/student/}">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" th:href="@{/student/new}">Add Student</a>
-					</li>
-				</ul>
-				<span class="navbar-text" sec:authorize="isAuthenticated()">
-					<a class="nav-link" th:href="@{/logout}">Logout</a>
-				</span>
-			</div>
-		</div>
-	</nav>
-	<br>
-	<br>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6 col-sm-6 container justify-content-center card">
+	<section>
+		<br>
+		<br>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-sm-6 container justify-content-center card">
 
-				<h1 class="text-center">User Login Page</h1>
-				<div class="card-body">
-					<form th:action="@{/login}" th:object="${userDTO}" method="post">
-						<!-- this param.error is coming from registerUserAccount method in UserRegController-->
-						<div th:if="${param.error}">
-							<div class="alert alert-danger">Invalid username or password.</div>
-						</div>
-						<!-- this param.logout is coming from SecurityConfig file in which if user logout the url is /login?logout-->
-						<div th:if="${param.logout}">
-							<div class="alert alert-info">You've been logged out.</div>
-						</div>
+					<h1 class="text-center">User Login Page</h1>
+					<div class="card-body">
+						<form th:action="@{/login}" th:object="${userDTO}" method="post">
+							<!-- this param.error is coming from registerUserAccount method in UserRegController-->
+							<div th:if="${param.error}">
+								<div class="alert alert-danger">Invalid username or password.</div>
+							</div>
+							<!-- this param.logout is coming from SecurityConfig file in which if user logout the url is /login?logout-->
+							<div th:if="${param.logout}">
+								<div class="alert alert-info">You've been logged out.</div>
+							</div>
+							<div class="form-group">
+								<label> Username </label>
+								<input class="form-control" type="text" name="username" id="username"
+									placeholder="Enter Email Id" required autofocus="autofocus">
+							</div>
+							<div class="form-group">
+								<label> Password </label>
+								<input class="form-control" type="password" name="password" id="password"
+									placeholder="Enter Password" required autofocus="autofocus">
+							</div>
+							<div class="box-footer">
+								<button type="submit" name="login-submit" class="btn btn-success my-2">Log In</button>
+							</div>
+						</form>
 						<div class="form-group">
-							<label> Username </label>
-							<input class="form-control" type="text" name="username" id="username"
-								placeholder="Enter Email Id" required autofocus="autofocus">
+							<span> New User? <a th:href="@{/registration}">Register here</a> </span>
 						</div>
-						<div class="form-group">
-							<label> Password </label>
-							<input class="form-control" type="password" name="password" id="password"
-								placeholder="Enter Password" required autofocus="autofocus">
-						</div>
-						<div class="box-footer">
-							<button type="submit" name="login-submit" class="btn btn-success my-2">Log In</button>
-						</div>
-					</form>
-					<div class="form-group">
-						<span> New User? <a th:href="@{/registration}">Register here</a> </span>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 </body>
 
 </html>
